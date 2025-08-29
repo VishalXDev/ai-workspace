@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+Mini AI Workspace (169Pi Task)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a **2-hour build assignment** for 169Pi 🚀.  
+Built with **React + TypeScript + TailwindCSS** to demonstrate a **memory-first UX**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- 💬 **Chat Area** — Displays dataset messages (from `dataset.json`).
+- 📌 **Memory Panel** — Pin/unpin messages into memory, visible on the side.
+- 🔍 **Search Bar** — Filter messages by title, description, author, or tags.
+- ⌨️ **Keyboard Shortcuts**:
+  - **J / K** → Navigate messages
+  - **P** → Pin/unpin selected message
+- 💾 **Persistence** — Pinned memory is saved in `localStorage`.
+- 📱 **Responsive** — Desktop-first, with mobile toggle for memory panel.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- React 18 + TypeScript
+- Tailwind CSS
+- Local state (`useState`, `useEffect`, `useMemo`)
+- LocalStorage persistence
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Clone & Install
+```bash
+git clone <your_repo_url>
+cd ai-workspace
+npm install
+2. Run Development
+bash
+Copy code
+npm start
+3. Build for Production
+bash
+Copy code
+npm run build
+Project Structure
+pgsql
+Copy code
+src/
+ ├─ components/      # UI components
+ │   ├─ Chat.tsx
+ │   ├─ Message.tsx
+ │   ├─ MemoryPanel.tsx
+ │   └─ SearchBar.tsx
+ ├─ data/            # Provided dataset
+ │   └─ dataset.json
+ ├─ App.tsx
+ ├─ index.tsx
+ └─ index.css
+Demo Script (Loom)
+Suggested Loom flow (5–7 minutes):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Intro (what you built) → Mini AI Workspace with chat + memory.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Search → Type into the search bar, filter messages.
 
-### `npm run eject`
+Pin to Memory → Click 📌 or press P. Show memory panel updating.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Persistence → Refresh page, memory stays.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Keyboard Shortcuts → Use J/K to move, P to pin.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Responsive View → Show memory toggle on mobile width.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Wrap-up → Clean UI, memory-first UX, extendable design.
 
-## Learn More
+Deployment
+Easiest way: Vercel (one command).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+bash
+Copy code
+npm i -g vercel
+vercel
+Author
+Built by Vishal ✨ for 169Pi Launch Team Task.
