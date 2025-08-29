@@ -31,7 +31,6 @@ export default function App() {
 
   // Selection for keyboard shortcuts
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  // ✅ Fix: useRef<HTMLDivElement>(null!) instead of | null
   const listRef = useRef<HTMLDivElement>(null!);
 
   // Load pinned from localStorage
@@ -43,7 +42,7 @@ export default function App() {
       setItems((prev) =>
         prev.map((n) => ({ ...n, pinned: pinnedIds.includes(n.id) }))
       );
-    } catch {}
+    } catch { }
   }, []);
 
   // Save pinned to localStorage
@@ -117,29 +116,38 @@ export default function App() {
   }, [selectedId]);
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-white/80 backdrop-blur border-b border-neutral-200">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-3">
-          <div className="size-8 rounded-xl bg-black text-white grid place-items-center font-semibold">
-            AI
+      <header className="sticky top-0 z-20 backdrop-blur-xl bg-white/70 border-b border-gray-200/50">
+        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <div className="size-10 rounded-2xl bg-black text-white grid place-items-center font-bold text-lg">
+                AI
+              </div>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full animate-pulse"></div>
+            </div>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              Workspace
+            </h1>
           </div>
-          <h1 className="text-lg font-semibold tracking-tight">
-            Mini AI Workspace
-          </h1>
-          <div className="ml-auto flex items-center gap-2">
-            <kbd className="hidden md:inline px-2 py-1 text-xs rounded border bg-neutral-100">J/K</kbd>
-            <span className="hidden md:inline text-xs text-neutral-500">navigate</span>
-            <kbd className="hidden md:inline px-2 py-1 text-xs rounded border bg-neutral-100">P</kbd>
-            <span className="hidden md:inline text-xs text-neutral-500">pin</span>
+          <div className="hidden md:flex items-center gap-4 text-sm text-gray-500">
+            <div className="flex items-center gap-1">
+              <kbd className="px-2 py-1 text-xs rounded-lg border bg-gray-100/80">J/K</kbd>
+              <span>navigate</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <kbd className="px-2 py-1 text-xs rounded-lg border bg-gray-100/80">P</kbd>
+              <span>pin</span>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Main */}
-      <main className="mx-auto max-w-6xl px-4 py-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <main className="mx-auto max-w-7xl px-6 py-8 grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Left: Chat + Search */}
-        <section className="md:col-span-2 flex flex-col gap-4">
+        <section className="lg:col-span-3 space-y-6">
           <SearchBar query={query} setQuery={setQuery} />
           <Chat
             filtered={filtered}
@@ -164,10 +172,37 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mx-auto max-w-6xl px-4 pb-8 pt-2 text-xs text-neutral-500">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span>Memory-first UX • Pinned items persist via localStorage</span>
-          <span>Built with React + Tailwind</span>
+      <footer className="mx-auto max-w-7xl px-6 pb-8 pt-6">
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
+
+        <div className="flex flex-wrap items-center justify-between gap-4 text-sm">
+          {/* Left: Product info */}
+          <span className="text-gray-500">Memory-first workspace • Data persists locally</span>
+
+          {/* Center: Tech stack */}
+          <div className="flex items-center gap-3">
+            <span className="text-gray-400">Built with</span>
+            <div className="flex items-center gap-1">
+              <span className="text-lg">⚛️</span>
+              <span className="text-gray-700 font-medium">React</span>
+            </div>
+            <span className="text-gray-300">+</span>
+            <div className="flex items-center gap-1">
+              <span className="text-lg">🎨</span>
+              <span className="text-gray-700 font-medium">Tailwind</span>
+            </div>
+          </div>
+
+          {/* Right: Creator */}
+          <div className="flex items-center gap-2">
+            <span className="text-gray-400">by</span>
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-purple-50 to-pink-50 rounded-full border border-purple-200">
+              <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold">
+                V
+              </div>
+              <span className="font-semibold text-gray-900">VishalXDev</span>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
