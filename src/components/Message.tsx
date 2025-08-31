@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Note } from "../App";
 
 type Props = {
@@ -11,14 +11,14 @@ type Props = {
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleString(undefined, {
-    year: "numeric",
     month: "short",
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
   });
 
-export default function Message({
+// Memoized component to prevent unnecessary re-renders
+export default memo(function Message({
   note,
   isSelected,
   onTogglePin,
@@ -30,24 +30,21 @@ export default function Message({
       tabIndex={0}
       onFocus={onSelect}
       onKeyDown={(e) => onKeyDown(e, note.id)}
-      className={`group relative overflow-hidden rounded-xl border transition-all duration-200 outline-none cursor-pointer ${
+      className={`group relative overflow-hidden rounded-lg border transition-all duration-150 outline-none cursor-pointer transform ${
         isSelected 
-          ? "border-indigo-300/60 shadow-lg shadow-indigo-500/10 bg-white/90 backdrop-blur-sm" 
-          : "border-white/40 bg-white/50 backdrop-blur-sm hover:bg-white/70 hover:border-white/60 hover:shadow-md"
+          ? "border-blue-300 bg-blue-50/80 shadow-sm scale-[1.01]" 
+          : "border-gray-200/60 bg-white/60 hover:bg-white/80 hover:border-gray-300/60 hover:shadow-sm"
       }`}
+      // Optimize for performance
+      style={{ 
+        willChange: isSelected ? 'transform, background-color' : 'auto',
+        transform: 'translate3d(0, 0, 0)' // GPU acceleration
+      }}
     >
-      {/* Simple background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-transparent pointer-events-none"></div>
-      
-      {/* Selection state */}
-      {isSelected && (
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/8 to-pink-500/5 pointer-events-none"></div>
-      )}
-
-      <div className="relative p-4">
-        {/* Header section */}
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <h3 className="font-semibold text-gray-900 text-base leading-tight flex-1">
+      <div className="p-3">
+        {/* Compact header section */}
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h3 className="font-semibold text-gray-900 text-sm leading-tight flex-1 line-clamp-1">
             {note.title}
           </h3>
           
@@ -57,53 +54,57 @@ export default function Message({
               e.stopPropagation();
               onTogglePin(note.id);
             }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 backdrop-blur-sm border ${
+            className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium transition-all duration-150 ${
               note.pinned
-                ? "bg-amber-100/80 text-amber-800 border-amber-200/60 hover:bg-amber-200/80"
-                : "bg-gray-100/80 text-gray-600 border-gray-200/60 hover:bg-gray-200/80 hover:text-gray-800"
+                ? "bg-amber-100 text-amber-700 border border-amber-200 hover:bg-amber-150"
+                : "bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-150 hover:text-gray-700"
             }`}
           >
-            <span className="text-sm">📌</span>
+            <span className="text-xs">📌</span>
             <span>{note.pinned ? "Pinned" : "Pin"}</span>
           </button>
         </div>
         
-        {/* Description */}
-        <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+        {/* Compact description */}
+        <p className="text-gray-600 mb-3 leading-relaxed text-xs line-clamp-2">
           {note.description}
         </p>
         
         {/* Compact metadata section */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 text-xs">
           {/* Author badge */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-100/80 backdrop-blur-sm rounded-lg text-xs font-medium border border-emerald-200/60">
-            <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-            <span className="text-emerald-800">{note.author}</span>
+          <div className="flex items-center gap-1 px-2 py-0.5 bg-emerald-100/80 rounded-md border border-emerald-200/60">
+            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+            <span className="text-emerald-700 font-medium">{note.author}</span>
           </div>
           
           {/* Date badge */}
-          <time className="px-2.5 py-1 bg-slate-100/80 backdrop-blur-sm text-slate-700 rounded-lg text-xs font-medium border border-slate-200/60">
+          <time className="px-2 py-0.5 bg-slate-100/80 text-slate-600 rounded-md border border-slate-200/60">
             {formatDate(note.created_at)}
           </time>
           
-          {/* Compact tags */}
-          {note.tags.map((tag) => (
+          {/* Compact tags - show max 3 tags */}
+          {note.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-1 bg-blue-100/80 text-blue-800 rounded-lg text-xs font-medium border border-blue-200/60 backdrop-blur-sm"
+              className="px-2 py-0.5 bg-blue-100/80 text-blue-700 rounded-md border border-blue-200/60"
             >
               #{tag}
             </span>
           ))}
+          
+          {note.tags.length > 3 && (
+            <span className="px-2 py-0.5 bg-gray-100/80 text-gray-600 rounded-md border border-gray-200/60">
+              +{note.tags.length - 3}
+            </span>
+          )}
         </div>
       </div>
 
-      {/* Simple focus ring */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 opacity-0 focus-within:opacity-100 blur-sm transition-all duration-200 -z-10"></div>
-
-      <style>{`
-        /* Removed all animations */
-      `}</style>
+      {/* Simple selection indicator */}
+      {isSelected && (
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-r"></div>
+      )}
     </article>
   );
-}
+});
