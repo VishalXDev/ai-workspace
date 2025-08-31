@@ -63,5 +63,265 @@
     "author": "design@169pi.com",
     "created_at": "2025-08-25T17:40:00Z",
     "pinned": true
+  },
+  {
+    "id": 6,
+    "title": "API Rate Limiting Strategy",
+    "description": "Implement tiered rate limits, usage analytics, and graceful degradation patterns.",
+    "tags": [
+      "api",
+      "performance",
+      "backend"
+    ],
+    "author": "eng@169pi.com",
+    "created_at": "2025-08-23T11:30:00Z",
+    "pinned": false
+  },
+  {
+    "id": 7,
+    "title": "Security Audit Findings",
+    "description": "CSRF protection, input validation, session management, and secure headers review.",
+    "tags": [
+      "security",
+      "audit",
+      "compliance"
+    ],
+    "author": "security@169pi.com",
+    "created_at": "2025-08-26T13:15:00Z",
+    "pinned": true
+  },
+  {
+    "id": 8,
+    "title": "Mobile App Wireframes",
+    "description": "iOS/Android layouts for chat interface, gesture navigation, and offline mode.",
+    "tags": [
+      "mobile",
+      "wireframes",
+      "design"
+    ],
+    "author": "design@169pi.com",
+    "created_at": "2025-08-24T16:20:00Z",
+    "pinned": false
+  },
+  {
+    "id": 9,
+    "title": "Database Migration Plan",
+    "description": "PostgreSQL upgrade path, zero-downtime deployment, and rollback procedures.",
+    "tags": [
+      "database",
+      "migration",
+      "infrastructure"
+    ],
+    "author": "devops@169pi.com",
+    "created_at": "2025-08-18T07:45:00Z",
+    "pinned": false
+  },
+  {
+    "id": 10,
+    "title": "User Onboarding Flow",
+    "description": "Welcome tour, feature discovery, progress tracking, and success metrics.",
+    "tags": [
+      "onboarding",
+      "ux",
+      "metrics"
+    ],
+    "author": "product@169pi.com",
+    "created_at": "2025-08-27T09:10:00Z",
+    "pinned": true
+  },
+  {
+    "id": 11,
+    "title": "Code Review Guidelines",
+    "description": "Best practices, automated checks, reviewer assignments, and merge policies.",
+    "tags": [
+      "code-review",
+      "process",
+      "quality"
+    ],
+    "author": "eng@169pi.com",
+    "created_at": "2025-08-17T14:55:00Z",
+    "pinned": false
+  },
+  {
+    "id": 12,
+    "title": "AI Model Performance Tracking",
+    "description": "Response quality metrics, latency monitoring, and A/B testing framework.",
+    "tags": [
+      "ai",
+      "performance",
+      "monitoring"
+    ],
+    "author": "research@169pi.com",
+    "created_at": "2025-08-28T12:35:00Z",
+    "pinned": false
+  },
+  {
+    "id": 13,
+    "title": "Notification System Design",
+    "description": "Push notifications, email alerts, in-app messaging, and user preferences.",
+    "tags": [
+      "notifications",
+      "messaging",
+      "engagement"
+    ],
+    "author": "product@169pi.com",
+    "created_at": "2025-08-16T10:25:00Z",
+    "pinned": false
+  },
+  {
+    "id": 14,
+    "title": "Collaboration Features Spec",
+    "description": "Shared workspaces, real-time editing, permission levels, and conflict resolution.",
+    "tags": [
+      "collaboration",
+      "realtime",
+      "sharing"
+    ],
+    "author": "team@169pi.com",
+    "created_at": "2025-08-29T15:50:00Z",
+    "pinned": true
+  },
+  {
+    "id": 15,
+    "title": "Analytics Dashboard Requirements",
+    "description": "User metrics, feature usage, retention analysis, and custom report builder.",
+    "tags": [
+      "analytics",
+      "dashboard",
+      "metrics"
+    ],
+    "author": "data@169pi.com",
+    "created_at": "2025-08-15T08:40:00Z",
+    "pinned": false
+  },
+  {
+    "id": 16,
+    "title": "Error Handling Standards",
+    "description": "User-friendly error messages, logging levels, retry mechanisms, and fallbacks.",
+    "tags": [
+      "error-handling",
+      "ux",
+      "reliability"
+    ],
+    "author": "eng@169pi.com",
+    "created_at": "2025-08-30T11:05:00Z",
+    "pinned": false
+  },
+  {
+    "id": 17,
+    "title": "Content Moderation Policy",
+    "description": "Automated filtering, human review workflows, appeal process, and community guidelines.",
+    "tags": [
+      "moderation",
+      "content",
+      "policy"
+    ],
+    "author": "policy@169pi.com",
+    "created_at": "2025-08-14T13:20:00Z",
+    "pinned": false
+  },
+  {
+    "id": 18,
+    "title": "Load Testing Results",
+    "description": "Concurrent user limits, response time degradation, and scaling recommendations.",
+    "tags": [
+      "performance",
+      "testing",
+      "scalability"
+    ],
+    "author": "qa@169pi.com",
+    "created_at": "2025-08-31T16:15:00Z",
+    "pinned": true
+  },
+  {
+    "id": 19,
+    "title": "Internationalization Roadmap",
+    "description": "Multi-language support, RTL layouts, currency handling, and locale-specific features.",
+    "tags": [
+      "i18n",
+      "localization",
+      "global"
+    ],
+    "author": "product@169pi.com",
+    "created_at": "2025-08-13T09:30:00Z",
+    "pinned": false
+  },
+  {
+    "id": 20,
+    "title": "Backup and Recovery Procedures",
+    "description": "Automated backups, disaster recovery, data retention policies, and restore testing.",
+    "tags": [
+      "backup",
+      "recovery",
+      "infrastructure"
+    ],
+    "author": "devops@169pi.com",
+    "created_at": "2025-09-01T07:25:00Z",
+    "pinned": false
+  },
+  {
+    "id": 21,
+    "title": "Theme Customization Engine",
+    "description": "User-defined color schemes, dark mode variants, and accessibility compliance.",
+    "tags": [
+      "themes",
+      "customization",
+      "accessibility"
+    ],
+    "author": "design@169pi.com",
+    "created_at": "2025-08-12T14:45:00Z",
+    "pinned": false
+  },
+  {
+    "id": 22,
+    "title": "Plugin Architecture Design",
+    "description": "Third-party integrations, sandboxed execution, API versioning, and marketplace.",
+    "tags": [
+      "plugins",
+      "architecture",
+      "extensibility"
+    ],
+    "author": "eng@169pi.com",
+    "created_at": "2025-09-02T10:20:00Z",
+    "pinned": false
+  },
+  {
+    "id": 23,
+    "title": "Customer Support Tooling",
+    "description": "Ticket system, knowledge base, chat support, and escalation workflows.",
+    "tags": [
+      "support",
+      "tooling",
+      "customer-service"
+    ],
+    "author": "support@169pi.com",
+    "created_at": "2025-08-11T12:10:00Z",
+    "pinned": false
+  },
+  {
+    "id": 24,
+    "title": "Search Functionality Enhancement",
+    "description": "Full-text search, filters, sorting, semantic matching, and result highlighting.",
+    "tags": [
+      "search",
+      "enhancement",
+      "features"
+    ],
+    "author": "product@169pi.com",
+    "created_at": "2025-09-03T15:35:00Z",
+    "pinned": true
+  },
+  {
+    "id": 25,
+    "title": "Compliance Documentation",
+    "description": "GDPR requirements, data processing agreements, privacy policy updates, and audit trails.",
+    "tags": [
+      "compliance",
+      "gdpr",
+      "privacy"
+    ],
+    "author": "legal@169pi.com",
+    "created_at": "2025-08-10T11:50:00Z",
+    "pinned": false
   }
 ]

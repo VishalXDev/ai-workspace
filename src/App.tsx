@@ -116,95 +116,162 @@ export default function App() {
   }, [selectedId]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+        {/* Floating orbs */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-blue-400/15 to-purple-400/15 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute top-40 right-32 w-40 h-40 bg-gradient-to-r from-pink-400/10 to-orange-400/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-32 left-1/3 w-36 h-36 bg-gradient-to-r from-cyan-400/15 to-blue-400/15 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        
+        {/* Geometric patterns */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-black rotate-45 animate-slow-spin"></div>
+          <div className="absolute top-3/4 right-1/4 w-6 h-6 bg-black rounded-full animate-slow-bounce"></div>
+          <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-black animate-ping delay-1000"></div>
+        </div>
+      </div>
+
       {/* Header */}
-      <header className="sticky top-0 z-20 backdrop-blur-xl bg-white/70 border-b border-gray-200/50">
-        <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <div className="size-10 rounded-2xl bg-black text-white grid place-items-center font-bold text-lg">
-                AI
+      <header className="relative z-20 backdrop-blur-lg bg-white/8 border-b border-white/15 shadow-lg">
+        <div className="mx-auto max-w-7xl px-4 py-3">
+          <div className="flex items-center justify-between transform-gpu">
+            <div className="flex items-center gap-3 group">
+              <div className="relative transform-gpu transition-all duration-300 hover:scale-105 hover:rotate-3">
+                <div className="size-9 rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white grid place-items-center font-bold text-sm shadow-lg border border-white/15 backdrop-blur-sm">
+                  <span className="transform transition-transform duration-300 group-hover:scale-105">AI</span>
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-emerald-400 to-cyan-400 border border-white rounded-full animate-ping shadow-sm"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-emerald-400 to-cyan-400 border border-white rounded-full shadow-sm"></div>
               </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full animate-pulse"></div>
+              <div className="transform transition-all duration-300 hover:scale-102">
+                <h1 className="text-lg font-bold bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 bg-clip-text text-transparent">
+                  Workspace
+                </h1>
+                <div className="h-0.5 w-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
+              </div>
             </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-              Workspace
-            </h1>
-          </div>
-          <div className="hidden md:flex items-center gap-4 text-sm text-gray-500">
-            <div className="flex items-center gap-1">
-              <kbd className="px-2 py-1 text-xs rounded-lg border bg-gray-100/80">J/K</kbd>
-              <span>navigate</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <kbd className="px-2 py-1 text-xs rounded-lg border bg-gray-100/80">P</kbd>
-              <span>pin</span>
+            
+            <div className="hidden md:flex items-center gap-4 text-xs">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/8 backdrop-blur-sm rounded-xl border border-white/15 shadow-md transform transition-all duration-300 hover:scale-102 hover:bg-white/12">
+                <kbd className="px-2 py-0.5 text-xs rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow-sm">J/K</kbd>
+                <span className="text-gray-700 font-medium">navigate</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/8 backdrop-blur-sm rounded-xl border border-white/15 shadow-md transform transition-all duration-300 hover:scale-102 hover:bg-white/12">
+                <kbd className="px-2 py-0.5 text-xs rounded-md bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold shadow-sm">P</kbd>
+                <span className="text-gray-700 font-medium">pin</span>
+              </div>
             </div>
           </div>
         </div>
       </header>
 
       {/* Main */}
-      <main className="mx-auto max-w-7xl px-6 py-8 grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Left: Chat + Search */}
-        <section className="lg:col-span-3 space-y-6">
-          <SearchBar query={query} setQuery={setQuery} />
-          <Chat
-            filtered={filtered}
-            selectedId={selectedId}
-            setSelectedId={setSelectedId}
-            togglePin={togglePin}
-            handleCardKeyDown={handleCardKeyDown}
-            listRef={listRef}
-          />
-        </section>
+      <main className="relative z-10 mx-auto max-w-7xl px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Left: Chat + Search */}
+          <section className="lg:col-span-3 space-y-6">
+            <div className="transform transition-all duration-300 hover:scale-[1.01] hover:-translate-y-0.5">
+              <SearchBar query={query} setQuery={setQuery} />
+            </div>
+            <div className="transform transition-all duration-300 hover:scale-[1.005] hover:-translate-y-0.5">
+              <Chat
+                filtered={filtered}
+                selectedId={selectedId}
+                setSelectedId={setSelectedId}
+                togglePin={togglePin}
+                handleCardKeyDown={handleCardKeyDown}
+                listRef={listRef}
+              />
+            </div>
+          </section>
 
-        {/* Right: Memory Panel */}
-        <MemoryPanel
-          pinned={pinned}
-          onTogglePin={togglePin}
-          onClearAll={() =>
-            setItems((prev) => prev.map((n) => ({ ...n, pinned: false })))
-          }
-          showMobile={showMemoryOnMobile}
-          toggleMobile={() => setShowMemoryOnMobile((s) => !s)}
-        />
+          {/* Right: Memory Panel */}
+          <div className="transform transition-all duration-300 hover:scale-[1.01] hover:-translate-y-0.5">
+            <MemoryPanel
+              pinned={pinned}
+              onTogglePin={togglePin}
+              onClearAll={() =>
+                setItems((prev) => prev.map((n) => ({ ...n, pinned: false })))
+              }
+              showMobile={showMemoryOnMobile}
+              toggleMobile={() => setShowMemoryOnMobile((s) => !s)}
+            />
+          </div>
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="mx-auto max-w-7xl px-6 pb-8 pt-6">
-        <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
+      <footer className="relative z-10 mx-auto max-w-7xl px-4 pb-6 pt-8">
+        <div className="h-px bg-gradient-to-r from-transparent via-purple-300/40 to-transparent mb-6 shadow-sm"></div>
 
-        <div className="flex flex-wrap items-center justify-between gap-4 text-sm">
+        <div className="flex flex-wrap items-center justify-between gap-4 text-xs">
           {/* Left: Product info */}
-          <span className="text-gray-500">Memory-first workspace • Data persists locally</span>
+          <div className="px-4 py-2 bg-white/8 backdrop-blur-sm rounded-xl border border-white/15 shadow-md transform transition-all duration-300 hover:scale-102 hover:bg-white/12">
+            <span className="text-gray-700 font-medium">Memory-first workspace • Data persists locally</span>
+          </div>
 
           {/* Center: Tech stack */}
-          <div className="flex items-center gap-3">
-            <span className="text-gray-400">Built with</span>
-            <div className="flex items-center gap-1">
-              <span className="text-lg">⚛️</span>
-              <span className="text-gray-700 font-medium">React</span>
+          <div className="flex items-center gap-3 px-4 py-2 bg-white/8 backdrop-blur-sm rounded-xl border border-white/15 shadow-md transform transition-all duration-300 hover:scale-102 hover:bg-white/12">
+            <span className="text-gray-600">Built with</span>
+            <div className="flex items-center gap-1.5 transform transition-all duration-300 hover:scale-105">
+              <span className="text-sm filter drop-shadow-sm">⚛️</span>
+              <span className="text-gray-800 font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">React</span>
             </div>
-            <span className="text-gray-300">+</span>
-            <div className="flex items-center gap-1">
-              <span className="text-lg">🎨</span>
-              <span className="text-gray-700 font-medium">Tailwind</span>
+            <div className="w-0.5 h-4 bg-gradient-to-b from-purple-400 to-pink-400 rounded-full"></div>
+            <div className="flex items-center gap-1.5 transform transition-all duration-300 hover:scale-105">
+              <span className="text-sm filter drop-shadow-sm">🎨</span>
+              <span className="text-gray-800 font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Tailwind</span>
             </div>
           </div>
 
           {/* Right: Creator */}
-          <div className="flex items-center gap-2">
-            <span className="text-gray-400">by</span>
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-purple-50 to-pink-50 rounded-full border border-purple-200">
-              <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold">
-                V
+          <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/8 via-pink-500/8 to-orange-500/8 backdrop-blur-sm rounded-xl border border-purple-200/40 shadow-md transform transition-all duration-300 hover:scale-102 hover:shadow-lg group">
+            <span className="text-gray-600">by</span>
+            <div className="flex items-center gap-1.5">
+              <div className="relative">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center text-white text-xs font-bold shadow-md transform transition-all duration-300 group-hover:scale-105 group-hover:rotate-6">
+                  V
+                </div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 blur-sm opacity-30 animate-pulse"></div>
               </div>
-              <span className="font-semibold text-gray-900">VishalXDev</span>
+              <span className="font-bold text-gray-900 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent transform transition-all duration-300 group-hover:scale-102">
+                VishalXDev
+              </span>
             </div>
           </div>
         </div>
       </footer>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-10px) rotate(1deg); }
+          66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes slowSpin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .animate-slow-spin {
+          animation: slowSpin 20s linear infinite;
+        }
+
+        @keyframes slowBounce {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+
+        .animate-slow-bounce {
+          animation: slowBounce 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
